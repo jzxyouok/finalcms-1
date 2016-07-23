@@ -9,9 +9,13 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'name' => 'finalcms',
+    'language' => 'zh-CN',
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => ['log', 'gii'],
+    'modules' => [
+        'gii' => 'yii\gii\Module'
+    ],
     'components' => [
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -43,6 +47,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
 ];

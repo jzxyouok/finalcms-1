@@ -13,5 +13,6 @@ use yii\helpers\Url;
     </a>
     <div id="contentlist" class="collapse in">
         <a href="<?= Url::toRoute('account/index');?>" class="list-group-item">用户管理</a>
+        <a href="<?= Url::toRoute('account/add');?>" class="list-group-item">添加用户</a>
     </div>
 </div>
