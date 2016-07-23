@@ -36,10 +36,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
-            ['label' => '我的面板', 'url' => ['/default/index']],
-            ['label' => '内容', 'url' => ['/default/about']],
-            ['label' => '用户', 'url' => ['/default/contact']],
-            ['label' => '设置', 'url' => ['/default/contact']],
+            ['label' => '我的面板', 'url' => ['/my/index']],
+            ['label' => '内容', 'url' => ['/content/index']],
+            ['label' => '用户', 'url' => ['/account/index']],
+            ['label' => '设置', 'url' => ['/setting/index']],
         ],
     ]);
     ?>
@@ -84,7 +84,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; finalcms <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
