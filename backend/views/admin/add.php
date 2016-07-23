@@ -10,6 +10,8 @@ use yii\bootstrap\ActiveForm;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
+$this->title = '添加管理员';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-sm-4 ">
     <?php $form = ActiveForm::begin([

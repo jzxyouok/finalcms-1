@@ -1,6 +1,9 @@
 
 <?php
 include(Yii::getAlias('@backend/views/base.php'));
+
+$this->title = '首页';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>

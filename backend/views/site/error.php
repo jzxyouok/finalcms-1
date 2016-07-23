@@ -7,6 +7,9 @@
 
 use yii\helpers\Html;
 
+include(Yii::getAlias('@backend/views/base.php'));
+
+
 $this->title = $name;
 ?>
 <div class="site-error">

@@ -1,5 +1,8 @@
 <?php
 include(Yii::getAlias('@backend/views/base.php'));
+
+$this->title = '系统设置';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>

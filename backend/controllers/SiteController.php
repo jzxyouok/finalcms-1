@@ -54,8 +54,4 @@ class SiteController extends BaseController
         return $this->goHome();
     }
 
-    public function actionRegister()
-    {
-
-    }
 }
