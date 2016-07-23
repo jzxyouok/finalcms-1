@@ -8,6 +8,8 @@ use Yii;
  */
 class DefaultController extends BaseController
 {
+    public $leftSideBar = 'default';
+
     /**
      * Renders the index view for the module
      * @return string
