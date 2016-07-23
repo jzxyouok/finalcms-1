@@ -10,6 +10,8 @@ namespace app\modules\admin\controllers;
 
 class MyController extends BaseController
 {
+    public $leftSideBar = 'my';
+
     public function actionIndex()
     {
         return $this->render('index');

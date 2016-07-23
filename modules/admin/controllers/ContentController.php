@@ -9,6 +9,8 @@ namespace app\modules\admin\controllers;
 
 class ContentController extends BaseController
 {
+    public $leftSideBar = 'content';
+
     public function actionIndex()
     {
         return $this->render('index');

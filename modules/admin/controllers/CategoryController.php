@@ -9,6 +9,7 @@ namespace app\modules\admin\controllers;
 
 class CategoryController extends BaseController
 {
+    public $leftSideBar = 'content';
 
     public function actionIndex()
     {

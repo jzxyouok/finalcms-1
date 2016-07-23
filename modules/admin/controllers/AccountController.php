@@ -9,6 +9,8 @@ namespace app\modules\admin\controllers;
 
 class AccountController extends BaseController
 {
+    public $leftSideBar = 'account';
+
     public function actionIndex()
     {
         return $this->render('index');

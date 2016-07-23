@@ -9,6 +9,8 @@ namespace app\modules\admin\controllers;
 
 class SettingController extends BaseController
 {
+    public $leftSideBar = 'setting';
+
     public function actionIndex()
     {
         return $this->render('index');
