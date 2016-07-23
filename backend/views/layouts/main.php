@@ -55,13 +55,13 @@ echo Nav::widget([
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-        Yii::$app->user->isGuest ? (
+        Yii::$app->admin->isGuest ? (
         ['label' => '登录', 'url' => ['/site/login']]
         ) : (
             '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
             . Html::submitButton(
-                '退出 (' . Yii::$app->user->identity->username . ')',
+                '退出 (' . Yii::$app->admin->identity->username . ')',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

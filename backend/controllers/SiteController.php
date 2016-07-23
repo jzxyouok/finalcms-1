@@ -34,7 +34,7 @@ class SiteController extends BaseController
     public function actionLogin()
     {
         $this->layout = 'blank';
-        if (!\Yii::$app->user->isGuest) {
+        if (!\Yii::$app->admin->isGuest) {
             return $this->goHome();
         }
 
@@ -50,7 +50,7 @@ class SiteController extends BaseController
 
     public function actionLogout()
     {
-        \Yii::$app->user->logout();
+        \Yii::$app->admin->logout();
         return $this->goHome();
     }
 

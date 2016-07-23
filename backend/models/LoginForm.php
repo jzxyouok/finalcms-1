@@ -14,7 +14,7 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
-    private $_user = false;
+    private $_admin = false;
 
     /**
      * @return array the validation rules.
@@ -50,9 +50,9 @@ class LoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
+            $admin = $this->getAdmin();
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$admin || !$admin->validatePassword($this->password)) {
                 $this->addError($attribute, '错误的用户名或密码.');
             }
         }
@@ -65,7 +65,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->admin->login($this->getAdmin(), $this->rememberMe ? 3600*24*30 : 0);
         } else {
             return false;
         }
@@ -74,14 +74,14 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return Admin|null
      */
-    public function getUser()
+    public function getAdmin()
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+        if ($this->_admin === false) {
+            $this->_admin = Admin::findByUsername($this->username);
         }
 
-        return $this->_user;
+        return $this->_admin;
     }
 }
