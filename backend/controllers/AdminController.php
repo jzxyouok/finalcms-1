@@ -18,9 +18,16 @@ class AdminController extends BaseController
 
     public function actionIndex()
     {
-
+        $request = Yii::$app->request;
+        $searchModel = new Admin();
+        $searchModel->setAttributes($request->get(), false);
         $model = new Admin();
         $query = Admin::find();
+        $query->filterWhere([
+            'username' => $searchModel->username,
+            'email' => $searchModel->email,
+            'realname' => $searchModel->realname,
+        ]);
         $dataProvider = new ActiveDataProvider([
             'query' =>$query,
             'pagination' => ['pageSize' => 10],
@@ -36,6 +43,7 @@ class AdminController extends BaseController
         return $this->render('index', [
             'model' => $model,
             'dataProvider' => $dataProvider,
+            'get' => $request->get(),
         ]);
     }
 
