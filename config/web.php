@@ -7,6 +7,11 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => require (__DIR__ . '/routes.php'),
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Q8tMttz2BOdjcy3SkYLpPM9x-_fz1jhR',
@@ -38,14 +43,6 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
     'params' => $params,
 ];
