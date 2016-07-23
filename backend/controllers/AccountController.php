@@ -7,7 +7,6 @@
  */
 namespace backend\controllers;
 
-use backend\models\RegisterForm;
 use Yii;
 
 class AccountController extends BaseController
@@ -21,19 +20,7 @@ class AccountController extends BaseController
 
     public function actionAdd()
     {
-        $model = new RegisterForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->register()) {
-                Yii::$app->session->setFlash('success', '注册成功');
-                $model = new RegisterForm();
-            } else {
-                Yii::$app->session->setFlash('error', '注册失败');
-            }
-        }
-
-        return $this->render('add', [
-            'model' => $model,
-        ]);
+        return $this->render('index');
     }
 
 
