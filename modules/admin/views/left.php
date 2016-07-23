@@ -9,17 +9,20 @@
 
 use yii\helpers\Url;
 ?>
-<ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-</ul>
-<ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-</ul>
+<div class="list-group">
+    <a href="#" class="list-group-item" data-toggle="collapse"  data-target="#mylist">
+        个人信息 <span class="caret"></span>
+    </a>
+    <div id="mylist" class="collapse in">
+        <a href="#" class="list-group-item">修改密码</a>
+    </div>
+</div>
+<div class="list-group">
+    <a href="#" class="list-group-item" data-toggle="collapse"  data-target="#commonlist">
+        常用操作 <span class="caret"></span>
+    </a>
+    <div id="commonlist" class="collapse in">
+        <a href="<?= Url::toRoute('category/index');?>" class="list-group-item">栏目管理</a>
+        <a href="<?= Url::toRoute('content/index');?>" class="list-group-item">内容管理</a>
+    </div>
+</div>
