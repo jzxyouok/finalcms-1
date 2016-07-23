@@ -16,11 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-sm-4 ">
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
-        'options' => ['class' => 'form-register'],
-        'fieldConfig' => [
-            'template' => "{input}",
-            'labelOptions' => ['class' => 'form-control'],
-        ],
+        'options' => ['class' => 'form-add'],
     ]); ?>
 
     <?= $form->field($model, 'username', [

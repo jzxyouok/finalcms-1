@@ -6,8 +6,11 @@
  * Time: 19:17
  */
 namespace backend\controllers;
+
+use backend\models\Admin;
 use backend\models\RegisterForm;
 use Yii;
+use yii\data\ActiveDataProvider;
 
 class AdminController extends BaseController
 {
@@ -15,7 +18,25 @@ class AdminController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $model = new Admin();
+        $query = Admin::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' =>$query,
+            'pagination' => ['pageSize' => 10],
+            'sort' => [
+                'attributes' => [
+                    'created_at',
+                    'id'
+                ]
+            ],
+        ]);
+
+
+        return $this->render('index', [
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionAdd()

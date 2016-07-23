@@ -61,6 +61,22 @@ class Admin extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => '用户名',
+            'email' => '邮箱',
+            'realname' => '姓名',
+            'mobile' => '手机',
+            'created_at' => '创建时间',
+            'updated_at' => '更新时间',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);

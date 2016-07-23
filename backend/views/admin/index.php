@@ -4,15 +4,27 @@ include(Yii::getAlias('@backend/views/base.php'));
 $this->title = '管理员管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="admin-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-</div>
+<?=
+\yii\grid\GridView::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => [
+        'id',
+        [
+            'attribute' => 'username',
+        ],
+        'email:email',
+        [
+            'attribute' => 'created_at',
+            'format' =>  ['date', 'php:Y-m-d H:i:s'],
+        ],
+        'realname',
+        'mobile',
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => '操作',
+            'template' => '{view} {update}  {delete}',
+            'headerOptions' => ['width' => '128', 'class' => 'padding-left-5px',],
+            'contentOptions' => ['class' => 'padding-left-5px'],
+        ],
+    ],
+]); ?>
