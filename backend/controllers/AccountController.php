@@ -21,10 +21,6 @@ class AccountController extends BaseController
 
     public function actionAdd()
     {
-        if (!\Yii::$app->admin->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->register()) {
