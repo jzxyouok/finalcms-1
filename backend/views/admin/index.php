@@ -5,20 +5,26 @@ $this->title = '管理员管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<form class="form-inline">
+<?php \yii\widgets\Pjax::begin([
+    'clientOptions' => [
+        'show' => 'fade'
+    ],
+]); ?>
+
+<form class="form-inline" data-pjax = '1'>
     <div class="form-group">
         <label class="sr-only" for="email">邮箱</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" value="">
+        <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" value="<?= $searchModel['email']?>">
     </div>
     <div class="form-group">
         <label class="sr-only" for="username">用户名</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+        <input type="text" class="form-control" id="username" name="username" placeholder="用户名" value="<?= $searchModel['username']?>">
     </div>
     <div class="form-group">
         <label class="sr-only" for="realname">真实姓名</label>
-        <input type="text" class="form-control" id="realname" name="realname" placeholder="真实姓名">
+        <input type="text" class="form-control" id="realname" name="realname" placeholder="真实姓名" value="<?= $searchModel['realname']?>">
     </div>
-    <button type="submit" class="btn btn-default">搜索</button>
+    <button type="submit" class="btn btn-default" id="search">搜索</button>
 </form>
 
 <div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -47,3 +53,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ],
 ]); ?>
+<?php \yii\widgets\Pjax::end(); ?>
