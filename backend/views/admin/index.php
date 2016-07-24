@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <label class="sr-only" for="realname">真实姓名</label>
         <input type="text" class="form-control" id="realname" name="realname" placeholder="真实姓名" value="<?= $searchModel['realname']?>">
     </div>
-    <button type="submit" class="btn btn-default" id="search">搜索</button>
+    <button type="submit" class="btn btn-default" id="search" data-loading-text="loading...">搜索</button>
 </form>
 
 <div class="clearfix" style="margin-bottom: 10px;"></div>
@@ -54,3 +54,26 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 <?php \yii\widgets\Pjax::end(); ?>
+
+
+<?php
+$modal = \yii\bootstrap\Modal::begin([
+    'header' => '<h4>加载中</h4>',
+    'toggleButton' => false,
+]);
+$modalId = $modal->id;
+echo '请稍后...';
+\yii\bootstrap\Modal::end();
+?>
+<?php
+$pageJs = <<<EOF
+    $(document).on('pjax:send', function(){
+        $('button[data-loading-text]').button('loading');
+        $('#$modalId').modal();
+    });
+    $(document).on('pjax:end', function(){
+        $('#$modalId').modal('hide');
+    })
+EOF;
+$this->registerJs($pageJs);
+?>
