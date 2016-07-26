@@ -9,47 +9,33 @@ namespace backend\controllers;
 
 use backend\models\Admin;
 use backend\models\AdminCreateForm;
+use backend\models\AdminSearch;
 use backend\models\AdminUpdateForm;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends BaseController
 {
     public $leftSideBar = 'account';
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
-        $request = Yii::$app->request;
-        $searchModel = new Admin();
-        $searchModel->setAttributes($request->get(), false);
-        $model = new Admin();
-        $query = Admin::find();
-        $query->filterWhere([
-            'email' => $searchModel->email,
-            'realname' => $searchModel->realname,
-        ]);
-        $query->andFilterWhere(
-            ['like', 'username', $searchModel->username]
-        );
-        $dataProvider = new ActiveDataProvider([
-            'query' =>$query,
-            'pagination' => ['pageSize' => 10],
-            'sort' => [
-                'attributes' => [
-                    'created_at',
-                    'id'
-                ]
-            ],
-        ]);
-
+        $searchModel = new AdminSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'model' => $model,
-            'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionCreate()
     {
         $model = new AdminCreateForm();
@@ -67,6 +53,10 @@ class AdminController extends BaseController
         ]);
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     public function actionUpdate($id)
     {
         $request = Yii::$app->request;
@@ -92,6 +82,9 @@ class AdminController extends BaseController
         ]);
     }
 
+    /**
+     * @return array
+     */
     public function actionUpdatePwd()
     {
         $request = Yii::$app->request;
@@ -105,6 +98,34 @@ class AdminController extends BaseController
             return ['error' => 0, 'msg' => '更新密码成功'];
         } else {
             return ['error' => 1, 'msg' => current( $admin->getFistErrors())];
+        }
+    }
+
+    /**
+     * Displays a single Admin model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Finds the Admin model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Admin the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Admin::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 

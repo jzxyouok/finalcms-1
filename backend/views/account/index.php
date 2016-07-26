@@ -9,16 +9,17 @@ use yii\grid\GridView;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
-$this->title = 'Users';
+$this->title = '用户管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <div class="clearfix" style="margin-bottom: 10px;"></div>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('创建用户', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -8,8 +8,8 @@ use yii\helpers\Html;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
-$this->title = '新增用户';
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = '添加用户';
+$this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-sm-4">

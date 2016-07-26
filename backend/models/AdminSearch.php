@@ -1,26 +1,22 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: jun
+ * Date: 2016/7/26
+ * Time: 21:41
+ */
+namespace backend\models;
 
-namespace common\models;
-
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\User;
 
-/**
- * UserSearch represents the model behind the search form about `common\models\User`.
- */
-class UserSearch extends User
+class AdminSearch extends Admin
 {
-    public $account;
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['password_hash', 'password_reset_token', 'email', 'mobile', 'account'], 'safe'],
+            [['password_hash', 'password_reset_token', 'email', 'mobile', 'username', 'realname'], 'safe'],
         ];
     }
 
@@ -42,7 +38,7 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = Admin::find();
 
         // add conditions that should always apply here
 
@@ -65,13 +61,14 @@ class UserSearch extends User
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
-        if ($this->account) {
-            $query->andFilterWhere(['or', ['=', 'mobile', $this->account], ['=', 'email', $this->account]]);
-        }
+
 
         $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'mobile', $this->mobile]);
+            ->andFilterWhere(['like', 'mobile', $this->mobile])
+            ->andFilterWhere(['like', 'username', $this->username]);
 
         return $dataProvider;
     }
+
+
 }

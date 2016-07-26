@@ -11,39 +11,36 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-<form class="form-inline" data-pjax = '1'>
-    <div class="form-group">
-        <label class="sr-only" for="email">邮箱</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" value="<?= $searchModel['email']?>">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="username">用户名</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="用户名" value="<?= $searchModel['username']?>">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="realname">真实姓名</label>
-        <input type="text" class="form-control" id="realname" name="realname" placeholder="真实姓名" value="<?= $searchModel['realname']?>">
-    </div>
-    <button type="submit" class="btn btn-default" id="search" data-loading-text="loading...">搜索</button>
-</form>
+
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <div class="clearfix" style="margin-bottom: 10px;"></div>
+
+<p>
+    <?= \yii\helpers\Html::a('创建管理员', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
 
 <?=
 \yii\grid\GridView::widget([
     'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
     'columns' => [
         'id',
-        [
-            'attribute' => 'username',
-        ],
+        'username',
+        'realname',
+        'mobile',
         'email:email',
         [
             'attribute' => 'created_at',
             'format' =>  ['date', 'php:Y-m-d H:i:s'],
         ],
-        'realname',
-        'mobile',
+        [
+            'attribute' => 'status',
+            'filter' => \yii\helpers\Html::activeDropDownList($searchModel, 'status',\backend\models\Admin::getStatus(), ['class' => 'form-control']),
+            'value' => function ($data) {
+                return \common\models\User::getStatus()[$data->status];
+            },
+        ],
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => '操作',

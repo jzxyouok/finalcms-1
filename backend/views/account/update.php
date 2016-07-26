@@ -8,28 +8,22 @@ use yii\bootstrap\ActiveForm;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
-$this->title = 'Update User: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = '更新用户: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-update">
+<div class="col-sm-5">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <div class="user-form">
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
 
-        <?php $form = ActiveForm::begin(); ?>
-
-        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
-
-        <div class="form-group">
-            <?= Html::submitButton('更新', ['class' =>  'btn btn-primary']) ?>
-        </div>
-
-        <?php ActiveForm::end(); ?>
-
+    <div class="form-group">
+        <?= Html::submitButton('更新', ['class' =>  'btn btn-primary']) ?>
     </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>

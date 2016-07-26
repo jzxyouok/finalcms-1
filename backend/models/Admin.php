@@ -75,6 +75,18 @@ class Admin extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return array
+     */
+    public static function getStatus()
+    {
+        return [
+            '' => '全部',
+            self::STATUS_ACTIVE => '正常',
+            self::STATUS_DELETED => '删除',
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public static function findIdentity($id)

@@ -1,20 +1,20 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: jun
+ * Date: 2016/7/26
+ * Time: 22:14
+ */
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\User */
 
 include(Yii::getAlias('@backend/views/base.php'));
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '管理员管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="admin-view">
 
     <p>
         <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -31,11 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'username',
+            'realname',
             'email:email',
             'mobile',
             [
                 'label' => '状态',
-                'value' =>  \common\models\User::getStatus()[$model->status],
+                'value' =>  \backend\models\Admin::getStatus()[$model->status],
             ],
             'created_at:datetime',
             'updated_at:datetime',

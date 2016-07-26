@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UserSearch */
@@ -13,17 +13,26 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'layout' => 'inline',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'id', [
+        'inputOptions' => [
+            'placeholder' => 'ID'
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'password_hash') ?>
+    <?= $form->field($model, 'email', [
+        'inputOptions' => [
+            'placeholder' => '邮箱'
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'password_reset_token') ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'mobile') ?>
+    <?= $form->field($model, 'mobile', [
+        'inputOptions' => [
+            'placeholder' => '手机号码'
+        ],
+    ]) ?>
 
     <?php // echo $form->field($model, 'status') ?>
 
@@ -32,8 +41,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('重置', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
