@@ -25,10 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
-        'id',
-        'username',
-        'realname',
-        'mobile',
+        [
+            'attribute' => 'id',
+            'options'=>[
+                'width'=>'120',
+                'style'=>'text-align:center',
+            ],
+        ],
+        [
+            'attribute' => 'username',
+            'options'=>[
+                'width'=>'120',
+                'style'=>'text-align:center',
+            ],
+        ],
+        [
+            'attribute' => 'mobile',
+            'options'=>[
+                'width'=>'100',
+                'style'=>'text-align:center',
+            ],
+        ],
         'email:email',
         [
             'attribute' => 'created_at',

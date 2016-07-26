@@ -25,7 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
+            [
+                'attribute' => 'id',
+                'options'=>[
+                    'width'=>'120',
+                    'style'=>'text-align:center',
+                ],
+            ],
             [
                 'label' => '账号',
                 'attribute' => 'account',
