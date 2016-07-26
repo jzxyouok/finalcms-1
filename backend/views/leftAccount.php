@@ -13,7 +13,7 @@ use yii\helpers\Url;
     </a>
     <div id="adminlist" class="collapse in">
         <a href="<?= Url::toRoute('admin/index');?>" class="list-group-item">管理员管理</a>
-        <a href="<?= Url::toRoute('admin/add');?>" class="list-group-item">添加管理员</a>
+        <a href="<?= Url::toRoute('admin/create');?>" class="list-group-item">添加管理员</a>
     </div>
 </div>
 
@@ -23,6 +23,6 @@ use yii\helpers\Url;
     </a>
     <div id="accountlist" class="collapse in">
         <a href="<?= Url::toRoute('account/index');?>" class="list-group-item">用户管理</a>
-        <a href="<?= Url::toRoute('account/add');?>" class="list-group-item">添加用户</a>
+        <a href="<?= Url::toRoute('account/create');?>" class="list-group-item">添加用户</a>
     </div>
 </div>

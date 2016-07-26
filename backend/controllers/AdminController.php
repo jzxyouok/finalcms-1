@@ -8,9 +8,8 @@
 namespace backend\controllers;
 
 use backend\models\Admin;
-use backend\models\AdminAddForm;
+use backend\models\AdminCreateForm;
 use backend\models\AdminUpdateForm;
-use backend\models\RegisterForm;
 use Yii;
 use yii\data\ActiveDataProvider;
 
@@ -51,19 +50,19 @@ class AdminController extends BaseController
         ]);
     }
 
-    public function actionAdd()
+    public function actionCreate()
     {
-        $model = new AdminAddForm();
+        $model = new AdminCreateForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->register()) {
                 Yii::$app->session->setFlash('success', '注册成功');
-                $model = new AdminAddForm();
+                $model = new AdminCreateForm();
             } else {
                 Yii::$app->session->setFlash('error', '注册失败');
             }
         }
 
-        return $this->render('add', [
+        return $this->render('create', [
             'model' => $model,
         ]);
     }

@@ -9,7 +9,7 @@ namespace backend\models;
 
 use yii\base\Model;
 
-class AdminAddForm extends Model
+class AdminCreateForm extends Model
 {
     public $username;
     public $password;
