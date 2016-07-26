@@ -22,19 +22,13 @@ use yii\bootstrap\ActiveForm;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'email', [
+    <?= $form->field($model, 'account', [
         'inputOptions' => [
-            'placeholder' => '邮箱'
+            'placeholder' => '邮箱/手机号码'
         ],
     ]) ?>
 
-    <?= $form->field($model, 'mobile', [
-        'inputOptions' => [
-            'placeholder' => '手机号码'
-        ],
-    ]) ?>
-
-    <?php // echo $form->field($model, 'status') ?>
+    <?php  echo $form->field($model, 'status')->dropDownList(\backend\models\Admin::getStatus()) ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 
