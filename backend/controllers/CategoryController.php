@@ -141,7 +141,14 @@ class CategoryController extends BaseController
     {
         $model = $this->findModel($id);
         if (!$model->has_child) {
-            $model->delete();
+            $parentId = $model->parentid;
+            $delete = $model->delete();
+            if ($delete) {
+                $parentChildren = Category::find()->where(['parentid' => $parentId])->all();
+                if (!$parentChildren) {
+                    Category::updateAll(['has_child' => 0], ['id' => $parentId]);
+                }
+            }
         }
         return $this->redirect(['index']);
     }
