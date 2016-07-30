@@ -58,10 +58,11 @@ $this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel[
 
 <?php
 $pageJs = <<<EOF
-    $('.cate-del').on('click', function() {
+
+    $('.cate-del').on('click', function(e) {
         var hasChild = $(this).attr('data-haschild');
         if (hasChild=='1') {
-            alert('请先删除此栏目下所有子栏目');
+            alert('请先删除此栏目的子栏目');
             return false;
         }
         if (confirm('确认要删除此栏目？')) {
