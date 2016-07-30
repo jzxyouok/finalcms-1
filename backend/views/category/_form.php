@@ -41,13 +41,13 @@ use yii\helpers\Html;
             <div class="form-group field-categoryform-parentname">
                 <label class="control-label col-sm-2" for="categoryform-parentname">父栏目名称</label>
                 <div class="col-sm-3">
-                    <input disabled type="text" value="<?= \common\models\Category::cateName($model->parentid)?>" id="categoryform-parentname" class="form-control" name="categoryform[parentname]">
+                    <input disabled type="text" value="<?= \common\services\Category::cateName($model->parentid)?>" id="categoryform-parentname" class="form-control" name="categoryform[parentname]">
                 </div>
             </div>
             <?= $form->field($model,'modelid',[
                 'labelOptions'=>['class'=>'control-label col-sm-2'],
                 'wrapperOptions' => ['class'=>'col-sm-2'],
-            ])->dropDownList(\common\models\Model::idIndexName());?>
+            ])->dropDownList(\common\services\Model::idIndexName());?>
             <?= $form->field($model,'name',[
                 'labelOptions'=>['class'=>'control-label col-sm-2'],
                 'wrapperOptions' => ['class'=>'col-sm-3'],

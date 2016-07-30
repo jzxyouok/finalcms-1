@@ -8,21 +8,24 @@ use yii\helpers\Url;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
-$cateName = \common\models\Category::cateName($searchModel['parentid']);
+$cateName = \common\services\Category::cateName($searchModel['parentid']);
 $this->title = '栏目管理';
 $this->params['breadcrumbs'][] = ['label' => '栏目管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $cateName;
 ?>
 <div class="category-index">
 
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel, 'data' => $data]); ?>
 
     <div class="clearfix" style="margin-bottom: 10px;"></div>
 
-    <h1><?= $cateName;?></h1>
-
     <p>
         <?= Html::a('添加顶级栏目', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+            if ($searchModel->parentid>0) {
+                echo Html::a('添加 （' . $cateName . '） 的子栏目', ['create', 'pid' => $searchModel->parentid], ['class' => 'btn btn-primary']);
+            }
+        ?>
     </p>
 
     <table class="table table-hover table-condensed table-bordered">
@@ -40,8 +43,7 @@ $this->params['breadcrumbs'][] = $cateName;
         <?php foreach ($cates as $one) :?>
             <tr>
                 <td class="col-sm-4">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <a href="<?= Url::to(['category/index', 'CategorySearch[parentid]' => $one['id']]); ?>"><?= $one['name'];?></a>
+                    <a href="<?= Url::to(['category/index', 'CategorySearch[parentid]' => $one['id']]); ?>"><?= $one['cate_name'];?></a>
                 </td>
                 <td class="col-sm-2"><?= $one['id'] ?></td>
                 <td><?= $one['listorder'] ?></td>

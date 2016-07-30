@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model common\models\CategorySearch */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -23,9 +23,14 @@ use yii\bootstrap\ActiveForm;
         'placeholder' => '栏目ID'
     ]) ?>
 
-    <?= $form->field($model, 'parentid')->textInput([
-        'placeholder' => '栏目父ID'
-    ]) ?>
+    <?= $form->field($model, 'parentid')->widget(Select2::classname(), [
+        'data' => $data,
+        'language' => 'de',
+        'options' => ['placeholder' => '选择父栏目'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);?>
 
     <?= $form->field($model, 'name')->textInput([
         'placeholder' => '栏目名称'

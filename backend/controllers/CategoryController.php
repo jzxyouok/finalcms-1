@@ -6,6 +6,7 @@ use common\models\Model;
 use Yii;
 use common\models\Category;
 use common\models\CategorySearch;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -42,12 +43,16 @@ class CategoryController extends BaseController
         $searchModel = new CategorySearch();
         if ($request->get('CategorySearch')) {
             $cates = $searchModel->search($request->queryParams);
+            $cates = \common\services\Category::talbleData(ArrayHelper::toArray($cates));
         } else {
-            $cates = \common\services\Category::getFirstLevel();
+            $cates = \common\services\Category::all();
+            $cates = \common\services\Category::talbleData($cates);
         }
+        $data = \common\services\Category::selectData();
         return $this->render('index', [
             'cates' => $cates,
             'searchModel' => $searchModel,
+            'data' => $data,
         ]);
     }
 
@@ -76,7 +81,7 @@ class CategoryController extends BaseController
         $parentid = $request->get('pid', 0);
         if ($request->isPost) {
             if ($model->load($request->post())) {
-                $model->arr_parent_id = Category::getArrParentId($model->parentid);
+                $model->arr_parent_id = \common\services\Category::getArrParentId($model->parentid);
                 if ($model->save()) {
                     Category::updateAll(['has_child' => 1], ['id' =>$model->parentid]);
                     return $this->redirect(['view', 'id' => $model->id]);

@@ -56,8 +56,4 @@ class Model extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function idIndexName()
-    {
-        return ['1'=>'文章模型','2'=>'图片模型'];
-    }
 }
