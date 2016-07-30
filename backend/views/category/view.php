@@ -10,7 +10,7 @@ include(Yii::getAlias('@backend/views/base.php'));
 
 $this->title = '查看栏目';
 $this->params['breadcrumbs'][] = ['label' => '栏目管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = \common\models\Category::cateName($model->id);
 ?>
 <div class="category-view">
 

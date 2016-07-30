@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel[
                 <td>
                     <a title="更新栏目" href="<?= Url::to(['category/update','id'=>$one['id']])?>"><span class="glyphicon glyphicon-pencil"></span></a>
                     <a title="添加子栏目" href="<?= Url::to(['category/create','pid'=>$one['id']])?>"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a title="删除栏目" class="cate-del" data-haschild="<?= $one['has_child'] ?>" data-method="post" href="<?= Url::to(['category/delete','id'=>$one['id']])?>"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
         <?php endforeach;?>
@@ -54,3 +55,21 @@ $this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel[
     </table>
 
 </div>
+
+<?php
+$pageJs = <<<EOF
+    $('.cate-del').on('click', function() {
+        var hasChild = $(this).attr('data-haschild');
+        if (hasChild=='1') {
+            alert('请先删除此栏目下所有子栏目');
+            return false;
+        }
+        if (confirm('确认要删除此栏目？')) {
+            return true;
+        }
+        return false;
+    });
+EOF;
+$this->registerJs($pageJs);
+
+?>
