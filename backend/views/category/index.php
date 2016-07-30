@@ -8,9 +8,10 @@ use yii\helpers\Url;
 
 include(Yii::getAlias('@backend/views/base.php'));
 
+$cateName = \common\models\Category::cateName($searchModel['parentid']);
 $this->title = '栏目管理';
 $this->params['breadcrumbs'][] = ['label' => '栏目管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel['parentid']);
+$this->params['breadcrumbs'][] = $cateName;
 ?>
 <div class="category-index">
 
@@ -18,8 +19,10 @@ $this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel[
 
     <div class="clearfix" style="margin-bottom: 10px;"></div>
 
+    <h1><?= $cateName;?></h1>
+
     <p>
-        <?= Html::a('添加栏目', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加顶级栏目', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <table class="table table-hover table-condensed table-bordered">
