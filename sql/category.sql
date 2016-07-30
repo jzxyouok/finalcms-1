@@ -3,7 +3,7 @@ CREATE TABLE `category` (
   `parentid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '父ID',
   `arr_parent_id` varchar(255) NOT NULL COMMENT '所有父id',
   `has_child` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否存在子栏目，1存在',
-  `catname` varchar(30) NOT NULL COMMENT '分类名称',
+  `name` varchar(30) NOT NULL COMMENT '分类名称',
   `listorder` mediumint(5) NOT NULL DEFAULT '0' COMMENT '排序',
 	`type` tinyint(1) NOT NULL COMMENT '栏目类型，1=最终列表栏目 2=频道封面 3=外部链接',
 	`urlpath` varchar(255) NOT NULL COMMENT 'URL路径，或者外部链接',

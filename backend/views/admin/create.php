@@ -14,7 +14,7 @@ $this->title = '添加管理员';
 $this->params['breadcrumbs'][] = ['label' => '管理员管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-sm-4">
+<div class="col-sm-4 well">
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
     ]); ?>

@@ -1,11 +1,11 @@
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ÓÃ»§ID',
-  `password_hash` varchar(255) NOT NULL COMMENT 'ÃÜÂëhash',
-  `password_reset_token` varchar(255) DEFAULT NULL COMMENT 'ÃÜÂëÖØÖÃtoken',
-  `email` varchar(255) NOT NULL DEFAULT '' COMMENT 'ÓÊÏä',
-  `mobile` char(13) NOT NULL  DEFAULT '' COMMENT 'ÊÖ»ú',
-  `status` smallint(6) NOT NULL DEFAULT '1' COMMENT 'ÓÃ»§×´Ì¬',
-  `created_at` int(11) NOT NULL COMMENT '´´½¨Ê±¼ä',
-  `updated_at` int(11) NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ç”¨æˆ·ID',
+  `password_hash` varchar(255) NOT NULL COMMENT 'å¯†ç hash',
+  `password_reset_token` varchar(255) DEFAULT NULL COMMENT 'å¯†ç é‡ç½®token',
+  `email` varchar(255) NOT NULL DEFAULT '' COMMENT 'é‚®ç®±',
+  `mobile` char(13) NOT NULL  DEFAULT '' COMMENT 'æ‰‹æœº',
+  `status` smallint(6) NOT NULL DEFAULT '1' COMMENT 'ç”¨æˆ·çŠ¶æ€',
+  `created_at` int(11) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `updated_at` int(11) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÓÃ»§±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç”¨æˆ·è¡¨';

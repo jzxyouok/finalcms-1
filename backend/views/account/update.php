@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']]
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-sm-5">
+<div class="col-sm-5 well">
 
     <?php $form = ActiveForm::begin(); ?>
 
