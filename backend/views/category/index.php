@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $cateName;
             <th >栏目名称</th>
             <th >ID</th>
             <th >排序</th>
+            <th >栏目类型</th>
             <th >创建时间</th>
             <th >更新时间</th>
             <th >操作</th>
@@ -47,6 +48,7 @@ $this->params['breadcrumbs'][] = $cateName;
                 </td>
                 <td class="col-sm-2"><?= $one['id'] ?></td>
                 <td><?= $one['listorder'] ?></td>
+                <td><?= \common\services\Model::idIndexName()[$one['type']] ?></td>
                 <td><?= date('Y-m-d H:i:s', $one['created_at']) ?></td>
                 <td><?= date('Y-m-d H:i:s', $one['updated_at']) ?></td>
                 <td>
