@@ -5,15 +5,9 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\CategorySearch */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 ?>
-<?php
-\yii\widgets\Pjax::begin([
-    'clientOptions' => [
-        'show' => 'fade'
-    ],
-]);
-?>
+
 <div class="category-search">
 
     <?php $form = ActiveForm::begin([
@@ -45,4 +39,3 @@ use yii\bootstrap\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-<? \yii\widgets\Pjax::end(); ?>
