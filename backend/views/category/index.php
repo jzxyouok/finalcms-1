@@ -9,7 +9,8 @@ use yii\helpers\Url;
 include(Yii::getAlias('@backend/views/base.php'));
 
 $this->title = '栏目管理';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => '栏目管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = \common\models\Category::cateName($searchModel['parentid']);
 ?>
 <div class="category-index">
 
