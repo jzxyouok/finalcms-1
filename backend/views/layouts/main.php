@@ -35,10 +35,10 @@ NavBar::begin([
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-left'],
     'items' => [
-        ['label' => '我的面板', 'url' => ['/my/index']],
-        ['label' => '内容', 'url' => ['/content/index']],
-        ['label' => '用户', 'url' => ['/account/index']],
-        ['label' => '设置', 'url' => ['/setting/index']],
+        ['label' => '我的面板', 'url' => ['/my/index'], 'active' => $this->context->leftSideBar == 'my'],
+        ['label' => '内容', 'url' => ['/content/index'], 'active' => $this->context->leftSideBar == 'content'],
+        ['label' => '用户', 'url' => ['/account/index'], 'active' => $this->context->leftSideBar == 'account'],
+        ['label' => '设置', 'url' => ['/setting/index'], 'active' => $this->context->leftSideBar == 'setting'],
     ],
 ]);
 ?>
