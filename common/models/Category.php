@@ -68,6 +68,10 @@ class Category extends \yii\db\ActiveRecord
             ['parentid', 'required'],
             ['parentid', 'integer'],
 
+            ['meta_title', 'safe'],
+            ['meta_keywords', 'safe'],
+            ['meta_description', 'safe'],
+
             ['modelid', 'required', 'when' => $normal],
             ['name', 'required', 'when' => $normal],
             ['urlpath', 'validateUrlpath', 'when' => $normal, 'skipOnEmpty' => false, 'skipOnError' => false],
