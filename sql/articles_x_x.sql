@@ -1,4 +1,4 @@
-CREATE TABLE `articles_b_x` (
+CREATE TABLE `articles_x_x` (
   `id` bigint(20) NOT NULL COMMENT '文章ID',
   `title` varchar(150) NOT NULL COMMENT '文章标题',
   `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '文章关键字',

@@ -47,18 +47,21 @@ class Model
         }
         $arrParentId = implode('_', $model->arr_parent_id);
 
-        //a表创建
-        $tableName = 'articles_a_';
+        //大类筛选表创建
+        $tableName = 'articles_';
         $tableName .= $arrParentId[1];
         $db->createCommand()->createTable($tableName, [
         //TODO
         ], $tableOptions);
-        //b表创建
-        $tableName = 'articles_b_';
+        //大类内容分表创建
+        $tableName = 'articles_';
         $tableName .= $arrParentId[1];
-        $db->createCommand()->createTable($tableName, [
-        //TODO
-        ], $tableOptions);
+        for($i=100;$i<110;$i++) {
+            $curTableName = $tableName . '_' . $i;
+            $db->createCommand()->createTable($curTableName, [
+                //TODO
+            ], $tableOptions);
+        }
     }
 
     public static function createPictureTable(\common\models\Category $model)
