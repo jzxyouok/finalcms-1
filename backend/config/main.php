@@ -47,7 +47,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
 ];

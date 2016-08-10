@@ -60,7 +60,7 @@ class Category
         return $cateName;
     }
 
-    public static function getArrParentId($pid)
+    public static function buildArrParentId($pid)
     {
         if (!$pid) {
             $arrParentId = 0;
@@ -81,7 +81,7 @@ class Category
         return $result;
     }
 
-    public static function talbleData($data)
+    public static function tableData($data)
     {
         $result = [];
         foreach ($data as $rk => $one) {

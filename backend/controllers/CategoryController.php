@@ -43,10 +43,10 @@ class CategoryController extends BaseController
         $searchModel = new CategorySearch();
         if ($request->get('CategorySearch')) {
             $cates = $searchModel->search($request->queryParams);
-            $cates = \common\services\Category::talbleData(ArrayHelper::toArray($cates));
+            $cates = \common\services\Category::tableData(ArrayHelper::toArray($cates));
         } else {
             $cates = \common\services\Category::all();
-            $cates = \common\services\Category::talbleData($cates);
+            $cates = \common\services\Category::tableData($cates);
         }
         $data = \common\services\Category::selectData();
         return $this->render('index', [
@@ -81,8 +81,9 @@ class CategoryController extends BaseController
         $parentid = $request->get('pid', 0);
         if ($request->isPost) {
             if ($model->load($request->post())) {
-                $model->arr_parent_id = \common\services\Category::getArrParentId($model->parentid);
+                $model->arr_parent_id = \common\services\Category::buildArrParentId($model->parentid);
                 if ($model->save()) {
+                    \common\services\Model::createModelTable($model->modelid, $model->id);
                     Category::updateAll(['has_child' => 1], ['id' =>$model->parentid]);
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
