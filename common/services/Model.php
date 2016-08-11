@@ -40,27 +40,43 @@ class Model
     {
 
         $db = \Yii::$app->db;
-        $tableOptions = null;
-        if ($db->driverName === 'mysql') {
-            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
         $arrParentId = implode('_', $model->arr_parent_id);
+        $secondCateId = $arrParentId[2];
+        //二级分类筛选表创建
+        $tableName = 'articles_';
+        $tableName .= $secondCateId;
 
-        //大类筛选表创建
+        $createTableSql = <<<EOF
+CREATE TABLE `$tableName` (
+  `id` bigint(20) unsigned  NOT NULL COMMENT '文章ID',
+  `cateid` int(11) unsigned NOT NULL COMMENT '文章分类ID',
+  `second_cate_id` int(11)  unsigned NOT NULL COMMENT '文章二级分类ID',
+  `cate_arr_id` varchar (255) NOT NULL COMMENT '文章所属分类ID,下划线_连接',
+  `table_id` int(11)  unsigned NOT NULL COMMENT '内容表分表ID',
+  `created_at` int(11)  unsigned NOT NULL COMMENT '添加时间',
+  `updated_at` int(11)  unsigned NOT NULL COMMENT '更新时间',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDb DEFAULT CHARSET=utf8;
+EOF;
+        $db->createCommand($createTableSql)->execute();
+        //二级分类内容分表创建
         $tableName = 'articles_';
-        $tableName .= $arrParentId[1];
-        $db->createCommand()->createTable($tableName, [
-        //TODO
-        ], $tableOptions);
-        //大类内容分表创建
-        $tableName = 'articles_';
-        $tableName .= $arrParentId[1];
+        $tableName .= $secondCateId;
         for($i=100;$i<110;$i++) {
             $curTableName = $tableName . '_' . $i;
-            $db->createCommand()->createTable($curTableName, [
-                //TODO
-            ], $tableOptions);
+            $curCreateTableSql = <<<EOF
+CREATE TABLE `$curTableName` (
+  `id` bigint(20) NOT NULL COMMENT '文章ID',
+  `title` varchar(150) NOT NULL COMMENT '文章标题',
+  `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '文章关键字',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '文章描述',
+	`content` MEDIUMTEXT COMMENT '文章内容',
+	`cover_img` MEDIUMTEXT COMMENT '文章封面',
+	`photo_list` MEDIUMTEXT COMMENT '文章图集',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDb DEFAULT CHARSET=utf8;
+EOF;
+            $db->createCommand($curCreateTableSql)->execute();
         }
     }
 
