@@ -41,11 +41,16 @@ class Model
     {
 
         $db = \Yii::$app->db;
-        $arrParentId = explode('-', $model->arr_parent_id);
-        $secondCateId = $arrParentId[1];
+        $secondCateId = $model->id;
         //二级分类筛选表创建
         $tableName = 'articles_';
         $tableName .= $secondCateId;
+
+        $showTableSql = "show tables like '{$tableName}'";
+        $hasTable = $db->createCommand($showTableSql)->queryOne();
+        if ($hasTable) {
+            return false;
+        }
 
         $createTableSql = <<<EOF
 CREATE TABLE `$tableName` (

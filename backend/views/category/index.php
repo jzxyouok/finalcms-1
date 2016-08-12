@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $cateName;
     <table class="table table-hover table-condensed table-bordered">
         <thead>
         <tr>
-            <th >栏目名称</th>
             <th >ID</th>
+            <th >栏目名称</th>
             <th >排序</th>
             <th >栏目类型</th>
             <th >创建时间</th>
@@ -43,10 +43,10 @@ $this->params['breadcrumbs'][] = $cateName;
         <tbody>
         <?php foreach ($cates as $one) :?>
             <tr>
+                <td ><?= $one['id'] ?></td>
                 <td class="col-sm-4">
                     <a href="<?= Url::to(['category/index', 'CategorySearch[parentid]' => $one['id']]); ?>"><?= $one['cate_name'];?></a>
                 </td>
-                <td class="col-sm-2"><?= $one['id'] ?></td>
                 <td><?= $one['listorder'] ?></td>
                 <td><?= \common\services\Model::idIndexName()[$one['type']] ?></td>
                 <td><?= date('Y-m-d H:i:s', $one['created_at']) ?></td>
