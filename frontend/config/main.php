@@ -29,6 +29,30 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'html' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'lexerOptions' => [
+                        'tag_comment'   => ['{#', '#}'],
+                        'tag_block'     => ['{%', '%}'],
+                        'tag_variable'  => ['{{', '}}'],
+                    ],
+                    'globals' => [
+                        'html' => '\yii\helpers\Html',
+                        'cate' => '\common\extensions\Category',
+                        'content' => '\common\extensions\Content',
+                    ],
+                    'uses' => ['yii\bootstrap'],
+                ],
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
