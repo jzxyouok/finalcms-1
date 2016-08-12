@@ -10,5 +10,19 @@ namespace common\extensions;
 class Category
 {
 
+    public static function top($cateId)
+    {
+
+    }
+
+    public static function parent($cateId)
+    {
+
+    }
+
+    public static function children($cateId)
+    {
+
+    }
 
 }

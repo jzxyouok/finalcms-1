@@ -47,7 +47,7 @@ return [
                     'globals' => [
                         'html' => '\yii\helpers\Html',
                         'cate' => '\common\extensions\Category',
-                        'content' => '\common\extensions\Content',
+                        'article' => '\common\extensions\Article',
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],
