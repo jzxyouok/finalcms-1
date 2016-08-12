@@ -28,4 +28,12 @@ class Article
 
     }
 
+    public static function listWithPage($data)
+    {
+        $cateId = Extension::getParam($data, 'cateId');
+        $pageSize = Extension::getParam($data, 'pageSize', 10);
+
+
+    }
+
 }
