@@ -15,7 +15,7 @@ CREATE TABLE `category` (
 	`meta_description` char(255) NOT NULL DEFAULT '' COMMENT '栏目description',
   `meta_keywords` varchar(125) NOT NULL DEFAULT '' COMMENT '栏目keywords',
   `meta_title` varchar(125) NOT NULL DEFAULT '' COMMENT '栏目title',
-	`setting` text NOT NULL COMMENT '其他设置',
+	`setting` text COMMENT '其他设置',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),

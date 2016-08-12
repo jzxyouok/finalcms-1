@@ -7,7 +7,8 @@
  */
 namespace common\services;
 
-use yii\db\Schema;
+
+use common\models\Category as CategoryModel;
 
 class Model
 {
@@ -19,7 +20,7 @@ class Model
 
     public static function createModelTable($modelId, $cateId)
     {
-        $model = Category::findOne($cateId);
+        $model = CategoryModel::findOne($cateId);
         $cateLevel = count(explode('-', $model->arr_parent_id));
         if ($cateLevel != 2) {
             return false;
@@ -36,12 +37,12 @@ class Model
         }
     }
 
-    public static function createArticleTable(\common\models\Category $model)
+    public static function createArticleTable(CategoryModel $model)
     {
 
         $db = \Yii::$app->db;
-        $arrParentId = implode('_', $model->arr_parent_id);
-        $secondCateId = $arrParentId[2];
+        $arrParentId = explode('-', $model->arr_parent_id);
+        $secondCateId = $arrParentId[1];
         //二级分类筛选表创建
         $tableName = 'articles_';
         $tableName .= $secondCateId;
@@ -80,7 +81,7 @@ EOF;
         }
     }
 
-    public static function createPictureTable(\common\models\Category $model)
+    public static function createPictureTable(CategoryModel $model)
     {
 
     }
