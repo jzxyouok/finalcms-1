@@ -15,6 +15,16 @@ class Extension
         return isset($data[$param]) ? $data[$param] : $defaultValue;
     }
 
+    public static function dump()
+    {
+        $args = func_get_args();
+        foreach($args as $key => $value) {
+            echo '<pre>';
+            var_dump($value);
+            echo '</pre>';
+        }
+    }
+
 
 
 }

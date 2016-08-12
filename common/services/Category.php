@@ -118,7 +118,18 @@ class Category
 
     public static function top($cateId)
     {
-
+        if (!$cateId) {
+            return [];
+        }
+        $cate =  CategoryModel::find()->where(['id' => $cateId])->asArray()->one();
+        $parentId = $cate['parentid'];
+        if ($parentId == 0) {
+            return $cate;
+        }
+        $arrParentId = explode('-', $cate['arr_parent_id']);
+        $topCateId = $arrParentId[1];
+        $topCate = CategoryModel::find()->where(['id' => $topCateId])->asArray()->one();
+        return $topCate;
     }
 
     public static function parent($cateId)
@@ -127,7 +138,10 @@ class Category
             return [];
         }
         $cate =  CategoryModel::find()->where(['id' => $cateId])->one();
-        $parent = CategoryModel::find()->where(['id' => $cate['parentid']])->one();
+        if (!$cate) {
+            return [];
+        }
+        $parent = CategoryModel::find()->where(['id' => $cate['parentid']])->asArray()->one();
         return $parent;
     }
 
