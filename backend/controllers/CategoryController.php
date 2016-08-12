@@ -81,7 +81,9 @@ class CategoryController extends BaseController
         $parentid = $request->get('pid', 0);
         if ($request->isPost) {
             if ($model->load($request->post())) {
-                $model->arr_parent_id = \common\services\Category::buildArrParentId($model->parentid);
+                $arrParentId = \common\services\Category::buildArrParentId($model->parentid);
+                $model->arr_parent_id = $arrParentId;
+                $model->level = count(explode('-', $arrParentId));
                 if ($model->save()) {
                     \common\services\Model::createModelTable($model->modelid, $model->id);
                     Category::updateAll(['has_child' => 1], ['id' =>$model->parentid]);
@@ -95,6 +97,7 @@ class CategoryController extends BaseController
             $model->type = Category::TYPE_NORMAL;
             $model->listorder = 0;
             $modelModel = Model::findOne($modelid);
+            $model->sub_domain = 'www';
             $model->template_index = $modelModel->template_index;
             $model->template_list = $modelModel->template_list;
             $model->template_article = $modelModel->template_article;
@@ -126,6 +129,8 @@ class CategoryController extends BaseController
             $post = Yii::$app->request->post();
             unset($post['Category']['parentid']);
             unset($post['Category']['arr_parent_id']);
+            unset($post['Category']['id']);
+            unset($post['Category']['level']);
             if ($model->load($post) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

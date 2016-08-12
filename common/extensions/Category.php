@@ -7,8 +7,15 @@
  */
 namespace common\extensions;
 
+use common\models\Category as CategoryModel;
+
 class Category
 {
+    public static function info($cateId)
+    {
+        $cate =  CategoryModel::find()->where(['id' => $cateId])->asArray()->one();
+        return $cate;
+    }
 
     public static function top($cateId)
     {

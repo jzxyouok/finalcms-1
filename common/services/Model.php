@@ -21,8 +21,7 @@ class Model
     public static function createModelTable($modelId, $cateId)
     {
         $model = CategoryModel::findOne($cateId);
-        $cateLevel = count(explode('-', $model->arr_parent_id));
-        if ($cateLevel != 2) {
+        if ($model['level'] != 2) {
             return false;
         }
         switch ($modelId) {

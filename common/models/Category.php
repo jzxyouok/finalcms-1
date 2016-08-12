@@ -14,9 +14,11 @@ use yii\db\ActiveRecord;
  * @property string $arr_parent_id
  * @property integer $has_child
  * @property string $name
+ * @property integer $level
  * @property integer $listorder
  * @property integer $type
  * @property string $urlpath
+ * @property string $sub_domain
  * @property string $template_index
  * @property string $template_list
  * @property string $template_article
@@ -88,10 +90,12 @@ class Category extends \yii\db\ActiveRecord
             ['listorder', 'integer'],
             ['parentid', 'required'],
             ['parentid', 'integer'],
+            ['level', 'integer'],
 
             ['meta_title', 'safe'],
             ['meta_keywords', 'safe'],
             ['meta_description', 'safe'],
+            ['sub_domain', 'safe'],
 
             ['modelid', 'required', 'when' => $normal],
             ['name', 'required', 'when' => $normal],
@@ -116,8 +120,8 @@ class Category extends \yii\db\ActiveRecord
 
     public function validateUrlpath($attribute, $params)
     {
-        if (empty($this->urlpath)) {
-            $this->addError($attribute, '请填写URL路径！');
+        if ($this->sub_domain == 'www' && empty($this->urlpath)) {
+            $this->addError($attribute, '没有绑定个性化子域名，请填写URL路径！');
         }
 
     }
@@ -136,6 +140,7 @@ class Category extends \yii\db\ActiveRecord
             'listorder' => '排序',
             'type' => '栏目类型',
             'urlpath' => '栏目路径',
+            'sub_domain' => '子域名',
             'template_index' => '封面模板',
             'template_list' => '列表模板',
             'template_article' => '文章模板',

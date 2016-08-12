@@ -67,6 +67,11 @@ use yii\helpers\Html;
         </div>
         <div id="advanced-info" class="tab-pane">
 
+            <?= $form->field($model,'sub_domain',[
+                'labelOptions'=>['class'=>'control-label col-sm-2'],
+                'wrapperOptions' => ['class'=>'col-sm-3 '],
+                'template' => "{label}\n{beginWrapper}\n<div class='input-group'><span class='input-group-addon'>http://</span>{input}<span class='input-group-addon'>." . DOMAIN . "</span></div>\n{endWrapper}\n{error}\n{hint}",
+            ])->textInput();?>
 
             <?= $form->field($model,'template_index',[
                 'labelOptions'=>['class'=>'control-label col-sm-2'],
