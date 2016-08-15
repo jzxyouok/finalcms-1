@@ -7,9 +7,10 @@
  */
 namespace backend\controllers;
 
-use common\models\ArticleSearch;
+
 use common\models\Category;
 use common\models\CategorySearch;
+use common\services\Article;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -46,18 +47,9 @@ class ContentController extends BaseController
         if ($modelId == 0) {
             return $this->redirect(Url::to(['content/page', 'cid' => $cateId]));
         } elseif($modelId == 1) {
-            $level = $cate['level'];
-            if ($level == 2) {
-                $tableId = $cateId;
-            } else {
-                $arrParentId = explode('-', $cate['arr_parent_id']);
-                $tableId = $arrParentId[2];
-            }
-            $searchModel = new ArticleSearch($tableId);
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $list = Article::getList($cateId);
             return $this->render('article_list', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
+                'articles' => $list,
             ]);
         } elseif($modelId == 2) {
             //TODO

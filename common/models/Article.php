@@ -18,7 +18,7 @@ use Yii;
 class Article extends \yii\db\ActiveRecord
 {
 
-    private static $_tableId;
+    protected static $_tableId;
 
     public static function instantiate($row)
     {
