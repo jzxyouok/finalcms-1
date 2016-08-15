@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <thead>
         <tr>
             <th >ID</th>
-            <th >栏目名称</th>
+            <th >标题</th>
+            <th >所属栏目</th>
             <th >创建时间</th>
             <th >更新时间</th>
             <th >操作</th>
@@ -37,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($articles as $one) :?>
             <tr>
                 <td ><?= $one['id'] ?></td>
+                <td ><?= '标题' ?></td>
                 <td class="col-sm-4">
                     <?= $one['cateid'];?>
                 </td>
