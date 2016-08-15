@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $cateName;
                     <a href="<?= Url::to(['category/index', 'CategorySearch[parentid]' => $one['id']]); ?>"><?= $one['cate_name'];?></a>
                 </td>
                 <td><?= $one['listorder'] ?></td>
-                <td><?= \common\services\Model::idIndexName()[$one['type']] ?></td>
+                <td><?= \common\services\Model::idIndexName()[$one['modelid']] ?></td>
                 <td><?= date('Y-m-d H:i:s', $one['created_at']) ?></td>
                 <td><?= date('Y-m-d H:i:s', $one['updated_at']) ?></td>
                 <td>

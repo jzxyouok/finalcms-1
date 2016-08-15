@@ -32,21 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <td ><?= $one['id'] ?></td>
                     <td class="col-sm-4">
-                        <?php if ($one['level'] >= 2) :?>
+                        <?php if ($one['level'] >= 2 || ($one['modelid'] == 0)) :?>
                         <a href="<?= Url::to(['content/list', 'cid' => $one['id']]); ?>"><?= $one['cate_name'];?></a>
-                        <?php else: ?>
+                        <?php else:?>
                             <?= $one['cate_name'];?>
                         <?php endif; ?>
                     </td>
                     <td><?= $one['listorder'] ?></td>
-                    <td><?= \common\services\Model::idIndexName()[$one['type']] ?></td>
+                    <td><?= \common\services\Model::idIndexName()[$one['modelid']] ?></td>
                     <td><?= date('Y-m-d H:i:s', $one['created_at']) ?></td>
                     <td><?= date('Y-m-d H:i:s', $one['updated_at']) ?></td>
                     <td>
                         <?php if ($one['modelid'] == 0) :?>
-                        <a title="更新单网页" href="<?= Url::to(['content/update','id' => $one['id']])?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a title="更新单网页" href="<?= Url::to(['content/page','id' => $one['id']])?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <?php else: ?>
+                        <a title="添加栏目内容" href="<?= Url::to(['content/create','cid' => $one['id']])?>"><span class="glyphicon glyphicon-plus"></span></a>
                         <?php endif; ?>
-                        <a title="添加栏目内容" href="<?= Url::to(['content/create','pid' => $one['id']])?>"><span class="glyphicon glyphicon-plus"></span></a>
                     </td>
                 </tr>
             <?php endforeach;?>

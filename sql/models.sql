@@ -14,5 +14,6 @@ CREATE TABLE `models` (
 -- 导出表中的数据 `models`
 --
 
+INSERT INTO `models` VALUES (0, '单网页', '', 'pages', 'page', 'page', 'page', 0);
 INSERT INTO `models` VALUES (1, '文章模型', '', 'articles', 'index_article', 'list_article', 'article_article', 0);
 INSERT INTO `models` VALUES (2, '图片模型', '', 'pictures', 'index_picture', 'list_picture', 'article_picture', 0);

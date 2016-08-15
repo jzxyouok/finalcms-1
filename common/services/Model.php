@@ -15,7 +15,7 @@ class Model
 
     public static function idIndexName()
     {
-        return ['1'=>'文章模型','2'=>'图片模型'];
+        return ['0' => '单网页', '1' => '文章模型', '2' => '图片模型'];
     }
 
     public static function createModelTable($modelId, $cateId)
@@ -67,7 +67,7 @@ EOF;
         //二级分类内容分表创建
         $tableName = 'articles_';
         $tableName .= $secondCateId;
-        for($i=100;$i<110;$i++) {
+        for ($i = 100; $i < 110; $i++) {
             $curTableName = $tableName . '_' . $i;
             $curCreateTableSql = <<<EOF
 CREATE TABLE `$curTableName` (

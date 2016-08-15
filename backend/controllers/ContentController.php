@@ -11,6 +11,7 @@ use common\models\Category;
 use common\models\CategorySearch;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 class ContentController extends BaseController
 {
@@ -41,6 +42,32 @@ class ContentController extends BaseController
         $cateId = $request->get('cid');
         $cate = Category::find()->where(['id' => $cateId])->asArray()->one();
         $modelId = $cate['modelid'];
+        if ($modelId == 0) {
+            return $this->redirect(Url::to(['content/page', 'cid' => $cateId]));
+        } elseif($modelId == 1) {
+            //TODO
+            return $this->render('article_list');
+        } elseif($modelId == 2) {
+            //TODO
+            return $this->render('image_list');
+        }
+    }
+
+    public function actionPage()
+    {
+
+    }
+
+
+    public function actionCreate()
+    {
+
+    }
+
+
+    public function actionUpdate()
+    {
+
     }
 
 
