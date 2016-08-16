@@ -42,18 +42,18 @@ class ContentController extends BaseController
     {
         $request = Yii::$app->request;
         $cateId = $request->get('cid');
-        $cate = Category::find()->where(['id' => $cateId])->asArray()->one();
+        $cate = \common\services\Category::one($cateId);
         $modelId = $cate['modelid'];
         if ($modelId == 0) {
             return $this->redirect(Url::to(['content/page', 'cid' => $cateId]));
         } elseif($modelId == 1) {
             $list = Article::getList($cateId);
-            return $this->render('article_list', [
+            return $this->render('article/list', [
                 'articles' => $list,
             ]);
         } elseif($modelId == 2) {
             //TODO
-            return $this->render('image_list');
+            return $this->render('image/list');
         }
     }
 
@@ -65,13 +65,33 @@ class ContentController extends BaseController
 
     public function actionCreate()
     {
-
+        $request = Yii::$app->request;
+        $cateId = $request->get('cid');
+        $cate = \common\services\Category::one($cateId);
+        $modelId = $cate['modelid'];
+        if ($modelId == 0) {
+            return $this->redirect(Url::to(['content/page', 'cid' => $cateId]));
+        } elseif($modelId == 1) {
+        //TODO
+        } elseif($modelId == 2) {
+        //TODO
+        }
     }
 
 
     public function actionUpdate()
     {
-
+        $request = Yii::$app->request;
+        $cateId = $request->get('cid');
+        $cate = \common\services\Category::one($cateId);
+        $modelId = $cate['modelid'];
+        if ($modelId == 0) {
+            return $this->redirect(Url::to(['content/page', 'cid' => $cateId]));
+        } elseif($modelId == 1) {
+            //TODO
+        } elseif($modelId == 2) {
+            //TODO
+        }
     }
 
 

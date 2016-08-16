@@ -75,6 +75,7 @@ class ArticleContent extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param $cateId
      * @param $tableId
      * @return \yii\db\ActiveQuery the newly created [[ActiveQuery]] instance.
      */
@@ -85,6 +86,7 @@ class ArticleContent extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param $cateId
      * @param $tableId
      * @param $condition
      * @return \yii\db\ActiveRecord|null ActiveRecord instance matching the condition, or `null` if nothing matches.
@@ -96,6 +98,7 @@ class ArticleContent extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param $cateId
      * @param $tableId
      * @param $condition
      * @return \yii\db\ActiveRecord[] an array of ActiveRecord instances, or an empty array if nothing matches.

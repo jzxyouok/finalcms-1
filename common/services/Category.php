@@ -159,6 +159,12 @@ class Category
         return static::children(0);
     }
 
+    public static function one($cateId)
+    {
+        $cate = CategoryModel::find()->where(['id' => $cateId])->asArray()->one();
+        return $cate;
+    }
+
 
 
 

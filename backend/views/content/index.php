@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= date('Y-m-d H:i:s', $one['updated_at']) ?></td>
                     <td>
                         <?php if ($one['modelid'] == 0) :?>
-                        <a title="更新单网页" href="<?= Url::to(['content/page','id' => $one['id']])?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a title="更新单网页" href="<?= Url::to(['content/page', 'cid' => $one['id']])?>"><span class="glyphicon glyphicon-pencil"></span></a>
                         <?php else: ?>
-                        <a title="添加栏目内容" href="<?= Url::to(['content/create','cid' => $one['id']])?>"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a title="添加栏目内容" href="<?= Url::to(['content/create', 'cid' => $one['id']])?>"><span class="glyphicon glyphicon-plus"></span></a>
                         <?php endif; ?>
                     </td>
                 </tr>
