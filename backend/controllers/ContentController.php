@@ -7,8 +7,6 @@
  */
 namespace backend\controllers;
 
-
-use common\models\Category;
 use common\models\CategorySearch;
 use common\services\Article;
 use Yii;
